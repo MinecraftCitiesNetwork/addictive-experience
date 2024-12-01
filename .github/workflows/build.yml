@@ -1,4 +1,4 @@
-name: Build and Upload JAR
+name: Build and Upload Final JAR
 
 on:
   push:
@@ -28,15 +28,13 @@ jobs:
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x ./gradlew
 
-      # Step 4: Build the JAR file
-      - name: Build JAR
-        run: ./gradlew build
+      # Step 4: Build the shadow JAR
+      - name: Build shadow JAR
+        run: ./gradlew :core:shadowJar
 
-      # Step 5: Identify and upload the correct JAR file
-      - name: Upload correct JAR as artifact
+      # Step 5: Upload the final JAR as an artifact
+      - name: Upload final JAR as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: addictive-experience-jar
-          path: |
-            api/build/libs/*api*.jar
-            core/build/libs/*core*.jar
+          name: addictive-experience-final-jar
+          path: core/build/libs/addictive-experience.jar
