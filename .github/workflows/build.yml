@@ -32,9 +32,11 @@ jobs:
       - name: Build JAR
         run: ./gradlew build
 
-      # Step 5: Upload the built JAR as an artifact
-      - name: Upload JAR as artifact
-        uses: actions/upload-artifact@v3
+      # Step 5: Identify and upload the correct JAR file
+      - name: Upload correct JAR as artifact
+        uses: actions/upload-artifact@v4
         with:
           name: addictive-experience-jar
-          path: build/libs/*.jar
+          path: |
+            api/build/libs/*api*.jar
+            core/build/libs/*core*.jar
