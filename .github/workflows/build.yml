@@ -14,6 +14,8 @@ jobs:
       # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: true # Initialize submodules automatically
 
       # Step 2: Set up JDK 17
       - name: Set up JDK 17
@@ -22,7 +24,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # Step 3: Grant execute permissions for Gradle wrapper
+      # Step 3: Grant execute permission for Gradle wrapper
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x ./gradlew
 
